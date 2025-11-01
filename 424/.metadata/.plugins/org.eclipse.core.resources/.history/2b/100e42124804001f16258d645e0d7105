@@ -1,0 +1,14 @@
+package com.shop.dao;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class CategoriesTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

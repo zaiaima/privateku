@@ -1,0 +1,33 @@
+package com.orcal.test;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.oracle.service.EmpService;
+import com.oracle.service.impl.EmpServiceImpl;
+import com.orcal.Util.MybatisUtil;
+import com.orcal.dao.EmpMapper;
+
+import entity.Emp;
+
+public class EmpServiceTest {
+
+	@Test
+	public void testselectAll() {
+		EmpService empservice=new EmpServiceImpl();
+		PageInfo<Emp> pageInfo=new PageInfo<>();
+		pageInfo.setc
+		//		PageHelper.startPage(2, 10);
+//			List<Emp> list=empMapper.selectAll();
+//			list.get(0).getDept();
+			Page<Emp> page=(Page<Emp>) list;
+//			System.out.println(empMapper.selectAll());
+			System.out.println("=="+page.getTotal());
+	}
+
+}

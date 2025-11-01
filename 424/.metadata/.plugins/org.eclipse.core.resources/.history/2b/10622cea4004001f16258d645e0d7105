@@ -1,0 +1,14 @@
+package com.orcal.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class EmpServiceTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

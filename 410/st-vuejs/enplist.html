@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<!-- <script src="https://unpkg.com/vue@next"></script> -->
+		<link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css">
+		<script src="js/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
+		<script src="//unpkg.com/element-plus"></script>
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+
+		<div id="app">
+			<el-table :data="pageInfo.pageData" stripe style="width:800">
+				<el-table-column prop="empNo" label="empNo"></el-table-column>
+				<el-table-column prop="eName" label="eName"></el-table-column>
+				<el-table-column prop="job" label="job"></el-table-column>
+				<el-table-column prop="mgr" label="mgr"></el-table-column>
+				<el-table-column prop="hiredate" label="hiredate"></el-table-column>
+				<el-table-column prop="sal" label="sal"></el-table-column>
+				<el-table-column prop="comm" label="comm"></el-table-column>
+				<el-table-column prop="dept.dName" label="部门" width="300px"></el-table-column>
+			</el-table>
+			<el-pagination @current-change="handleCurrentChange" 
+			background layout="prev, pager, next"
+				:total="pageInfo.totalCnt" />
+		</div>
+		<script>
+			const app = Vue.createApp({
+				data() {
+					return {
+						// emps: {}
+						pageInfo: {crtPage:1}
+					}
+				},
+				mounted() {
+					//应用挂载完毕
+					console.log('mounted');
+					this.getData();
+
+				},
+				methods: {
+					getData() {
+						let postData = new URLSearchParams();
+						postData.append('page', this.pageInfo.crtPage)
+						axios.post('http://localhost:8080/jdbcdemo/EmpSearchServlet', postData)
+							.then(response => {
+								//处理成功情况
+								console.log('结果：')
+								console.log(response.data)
+								this.pageInfo = response.data
+							});
+					},
+					handleCurrentChange(val) {
+						this.pageInfo.crtPage =	 val;
+						this.getData();
+					}
+				},
+			});
+			const vm = app.use(ElementPlus).mount('#app');
+		</script>
+	</body>
+</html>

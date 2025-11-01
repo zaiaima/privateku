@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!--link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css"-->
+		<script src="js/v3.2.8/vue.global.prod.js" type="text/javascript" charset="utf-8"></script>
+		<!--script src="//unpkg.com/element-plus"></script-->
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{emps}}
+		</div>
+		<script>
+			const app = Vue.createApp({
+				data() {
+					return {
+						emps: {}
+					}
+				},
+				mounted() {
+					console.log('mounted');
+					axios.post('http://localhost:8080/jdbcdemo/EmpServlet')
+						.then(response => {
+							console.log(response);
+							this.emps = response.data
+						});
+				}
+			});
+			const vm = app.mount('#app');
+		</script>
+	</body>
+</html>

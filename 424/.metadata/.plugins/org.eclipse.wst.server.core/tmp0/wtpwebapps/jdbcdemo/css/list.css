@@ -1,0 +1,12 @@
+#container {
+	width: 800px;
+	margin: 0px auto;
+}
+
+#container h2 {
+	text-align: center;
+}
+
+#container table {
+	width: 800px
+}

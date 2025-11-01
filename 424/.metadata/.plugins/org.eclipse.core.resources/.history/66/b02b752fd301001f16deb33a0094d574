@@ -1,0 +1,25 @@
+package com.orcal.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
+
+import com.orcal.entity.Dept;
+
+public interface DeptMapper {
+
+	@Select("select * from Dept where deptno = #{deptno}")
+	public Dept selectById(int deptno);
+	
+	@Select("select * from Dept")
+	public List<Dept> selectAll();
+	
+	@Insert("insert into dept values(#{deptno},#{dname},#{loc})")
+	public int add(Dept dept);
+	
+	@Update("update dept set dname=#{dname},loc=#{loc} where deptno=#{deptno}")
+	public int update(Dept dept);
+
+}

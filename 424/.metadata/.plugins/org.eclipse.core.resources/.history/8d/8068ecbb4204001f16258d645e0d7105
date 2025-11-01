@@ -1,0 +1,21 @@
+package com.orcal.test;
+
+import org.junit.Test;
+
+import com.github.pagehelper.PageInfo;
+import com.orcal.Util.PageInfo;
+import com.oracle.service.EmpService;
+import com.oracle.service.impl.EmpServiceImpl;
+
+import entity.Emp;
+
+public class EmpServiceTest {
+
+	@Test
+	public void testselectAll() {
+		EmpService empservice=new EmpServiceImpl();
+		PageInfo<Emp> pageInfo=new PageInfo<>();
+		pageInfo.setcr
+	}
+
+}

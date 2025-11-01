@@ -1,0 +1,26 @@
+package com.shop.test;
+
+import java.util.List;
+
+import org.junit.Test;
+
+import com.shop.dao.CategoriesMapper;
+import com.shop.util.MybatisUtil;
+
+public class CategoriesTest {
+
+
+	@Test
+	public void testselectAll() {
+		try (SqlSession session =MybatisUtil.getsession()) {
+			CategoriesMapper empMapper=session.getMapper(EmpMapper.class);
+			PageHelper.startPage(2, 10);
+			List<Emp> list=empMapper.selectAll();
+//			list.get(0).getDept();
+			Page<Emp> page=(Page<Emp>) list;
+//			System.out.println(empMapper.selectAll());
+			System.out.println("=="+page.getTotal());
+		}
+	}
+	
+}

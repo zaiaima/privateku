@@ -1,0 +1,26 @@
+package com.shop.test;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.junit.Test;
+
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.shop.dao.CategoriesMapper;
+import com.shop.util.MybatisUtil;
+
+public class CategoriesTest {
+
+
+	@Test
+	public void testselectAll() {
+		try (SqlSession session =MybatisUtil.getsession()) {
+			CategoriesMapper cateMapper=session.getMapper(CategoriesMapper.class);
+			System.out.println(cateMapper.selectAll());
+			
+			
+		}
+	}
+	
+}

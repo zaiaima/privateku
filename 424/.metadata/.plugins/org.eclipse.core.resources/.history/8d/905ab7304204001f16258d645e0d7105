@@ -1,0 +1,65 @@
+package com.oracle.service.impl;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.oracle.service.EmpService;
+import com.orcal.Util.MybatisUtil;
+import com.orcal.dao.EmpMapper;
+
+import entity.Emp;
+
+public class EmpServiceImpl implements EmpService {
+
+	@Override
+	public List<Emp> queryAll() {
+		List<Emp> list = null;
+//		try {
+//			list = empDao.queryAll();
+//			Dept dept = null;
+//			for (Emp emp : list) {
+//				dept = deptDao.queryByNo(emp.getDeptNo());
+//				dept = dept == null ? new Dept() : dept;
+//				emp.setDept(dept);
+//			}
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		return list;
+	}
+
+
+	@Override
+	public List<String> getJobs() {		
+		List<String> list = null;
+//		try {
+//			list = empDao.getJobs();			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		return list;
+	}
+
+	@Override
+	public PageInfo<Emp> getPage(PageInfo<Emp> pageInfo) {
+		try (SqlSession session = MybatisUtil.getsession()) {
+			EmpMapper empMapper = session.getMapper(EmpMapper.class);
+			try {
+				Page<Emp> page=PageHelper.startPage(pageInfo).doSelectPage(()-> empMapper.selectAll());
+				pageInfo.setPageData(page.getResult());
+				pageInfo.setTotalCnt((int)page.getTotal());
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		}
+//		
+		return pageInfo;
+	}
+
+}
