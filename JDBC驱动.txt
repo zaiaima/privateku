@@ -1,0 +1,4 @@
+String driver = "com.mysql.cj.jdbc.Driver";   // 数据库驱动字符串
+String url = "jdbc:mysql://localhost:3306/NewsManagerSystem?serverTimezone=GMT-8";   // 连接URL字符串
+String user = "root";     // 数据库用户名
+String password = "root"; // 用户密码
